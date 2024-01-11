@@ -21,7 +21,6 @@ final class GildedRose
     public function updateQuality(): void
     {
         foreach ($this->items as $item) {
-            $item->decreaseSellIn();
             $item->update();
         }
     }

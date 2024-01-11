@@ -14,4 +14,19 @@ class BaseItem
     {
         $this->item = $item;
     }
+
+    protected function decreaseSellIn(): void
+    {
+        --$this->item->sellIn;
+    }
+
+    protected function increaseQuality(int $amount): void
+    {
+        $this->item->quality += $amount;
+    }
+
+    protected function decreaseQuality(int $amount): void
+    {
+        $this->item->quality -= $amount;
+    }
 }

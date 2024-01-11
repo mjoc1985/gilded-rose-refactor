@@ -10,26 +10,25 @@ class BackStagePassItem extends BaseItem implements ItemInterface
 {
     public function update(): void
     {
+        $this->decreaseSellIn();
+
         if ($this->item->sellIn <= 0) {
             $this->item->quality = 0;
             return;
         }
 
         if ($this->item->quality < 50) {
-            ++$this->item->quality;
+            $increaseRate = 1;
 
             if ($this->item->sellIn <= 10) {
-                ++$this->item->quality;
+                $increaseRate++;
             }
 
             if ($this->item->sellIn <= 5) {
-                ++$this->item->quality;
+                $increaseRate++;
             }
-        }
-    }
 
-    public function decreaseSellIn(): void
-    {
-        --$this->item->sellIn;
+            $this->increaseQuality($increaseRate);
+        }
     }
 }

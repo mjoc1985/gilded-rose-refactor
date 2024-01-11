@@ -12,9 +12,4 @@ class SulfurasItem extends BaseItem implements ItemInterface
     {
         // No change allowed.
     }
-
-    public function decreaseSellIn(): void
-    {
-        // No change allowed.
-    }
 }

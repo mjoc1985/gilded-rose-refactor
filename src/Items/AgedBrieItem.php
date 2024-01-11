@@ -10,13 +10,10 @@ class AgedBrieItem extends BaseItem implements ItemInterface
 {
     public function update(): void
     {
-        if ($this->item->quality < 50) {
-            ++$this->item->quality;
-        }
-    }
+        $this->decreaseSellIn();
 
-    public function decreaseSellIn(): void
-    {
-        --$this->item->sellIn;
+        if ($this->item->quality < 50) {
+            $this->increaseQuality(1);
+        }
     }
 }

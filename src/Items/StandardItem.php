@@ -12,15 +12,12 @@ class StandardItem extends BaseItem implements ItemInterface
     {
         $degradationRate = ($this->item->sellIn <= 0) ? 2 : 1;
 
-        $this->item->quality -= $degradationRate;
+        $this->decreaseQuality($degradationRate);
 
         if ($this->item->quality < 0) {
             $this->item->quality = 0;
         }
-    }
 
-    public function decreaseSellIn(): void
-    {
-        --$this->item->sellIn;
+        $this->decreaseSellIn();
     }
 }
