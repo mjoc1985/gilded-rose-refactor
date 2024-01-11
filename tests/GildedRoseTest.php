@@ -21,10 +21,10 @@ class GildedRoseTest extends TestCase
     public function testSellInDecreasesAsExpected()
     {
         $items = [
-            new Item("Standard Item", 10, 20),
-            new Item("Aged Brie", 10, 20),
-            new Item("Sulfuras, Hand of Ragnaros", 10, 20),
-            new Item("Backstage passes to a TAFKAL80ETC concert", 10, 20),
+            new Item('Standard Item', 10, 20),
+            new Item('Aged Brie', 10, 20),
+            new Item('Sulfuras, Hand of Ragnaros', 10, 20),
+            new Item('Backstage passes to a TAFKAL80ETC concert', 10, 20),
         ];
         $gildedRose = new GildedRose($items);
         $gildedRose->updateQuality();
@@ -39,10 +39,9 @@ class GildedRoseTest extends TestCase
         $this->assertEquals(9, $items[3]->sellIn);
     }
 
-
     public function testStandardItemDecreasesByOne()
     {
-        $items = [new Item("Standard Item", 10, 20)];
+        $items = [new Item('Standard Item', 10, 20)];
         $gildedRose = new GildedRose($items);
         $gildedRose->updateQuality();
 
@@ -52,7 +51,7 @@ class GildedRoseTest extends TestCase
 
     public function testStandardItemDecreasesByTwoAfterSellDate()
     {
-        $items = [new Item("Standard Item", 0, 20)];
+        $items = [new Item('Standard Item', 0, 20)];
         $gildedRose = new GildedRose($items);
         $gildedRose->updateQuality();
 
@@ -62,7 +61,7 @@ class GildedRoseTest extends TestCase
 
     public function testItemQualityIsNeverNegative()
     {
-        $items = [new Item("Standard Item", 10, 0)];
+        $items = [new Item('Standard Item', 10, 0)];
         $gildedRose = new GildedRose($items);
         $gildedRose->updateQuality();
 
@@ -71,7 +70,7 @@ class GildedRoseTest extends TestCase
 
     public function testAgedBrieIncreasesInQuality()
     {
-        $items = [new Item("Aged Brie", 10, 20)];
+        $items = [new Item('Aged Brie', 10, 20)];
         $gildedRose = new GildedRose($items);
         $gildedRose->updateQuality();
 
@@ -80,16 +79,16 @@ class GildedRoseTest extends TestCase
 
     public function testItemQualityIsNeverMoreThanFifty()
     {
-        $items = [new Item("Aged Brie", 10, 50)];
+        $items = [new Item('Aged Brie', 10, 50)];
         $gildedRose = new GildedRose($items);
         $gildedRose->updateQuality();
 
         $this->assertLessThanOrEqual(50, $items[0]->quality);
     }
 
-    public function testSulfurasNeverDecreaseInQuality()
+    public function testSulfurasNeverQualityNeverChanges()
     {
-        $items = [new Item("Sulfuras, Hand of Ragnaros", 10, 80)];
+        $items = [new Item('Sulfuras, Hand of Ragnaros', 10, 80)];
         $gildedRose = new GildedRose($items);
         $gildedRose->updateQuality();
 
@@ -99,7 +98,7 @@ class GildedRoseTest extends TestCase
 
     public function testBackStagePassesQualityIncreases()
     {
-        $items = [new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20)];
+        $items = [new Item('Backstage passes to a TAFKAL80ETC concert', 15, 20)];
         $gildedRose = new GildedRose($items);
         $gildedRose->updateQuality();
 
@@ -109,7 +108,7 @@ class GildedRoseTest extends TestCase
 
     public function testBackStagePassesQualityIncreasesByTwo()
     {
-        $items = [new Item("Backstage passes to a TAFKAL80ETC concert", 10, 20)];
+        $items = [new Item('Backstage passes to a TAFKAL80ETC concert', 10, 20)];
         $gildedRose = new GildedRose($items);
         $gildedRose->updateQuality();
 
@@ -119,7 +118,7 @@ class GildedRoseTest extends TestCase
 
     public function testBackStatePassesIncreaseByThree()
     {
-        $items = [new Item("Backstage passes to a TAFKAL80ETC concert", 5, 20)];
+        $items = [new Item('Backstage passes to a TAFKAL80ETC concert', 5, 20)];
         $gildedRose = new GildedRose($items);
         $gildedRose->updateQuality();
 
@@ -129,7 +128,7 @@ class GildedRoseTest extends TestCase
 
     public function testBackStagePassesQualityDropsToZeroAfterConcert()
     {
-        $items = [new Item("Backstage passes to a TAFKAL80ETC concert", 0, 20)];
+        $items = [new Item('Backstage passes to a TAFKAL80ETC concert', 0, 20)];
         $gildedRose = new GildedRose($items);
         $gildedRose->updateQuality();
 
@@ -139,7 +138,7 @@ class GildedRoseTest extends TestCase
 
     public function testConjuredItemsDegradeTwiceAsFastInQuality()
     {
-        $items = [new Item("Conjured Mana Cake", 10, 20)];
+        $items = [new Item('Conjured Mana Cake', 10, 20)];
         $gildedRose = new GildedRose($items);
         $gildedRose->updateQuality();
 
@@ -149,7 +148,7 @@ class GildedRoseTest extends TestCase
 
     public function testConjuredItemsDegradeTwiceAsFastInQualityAfterSellDate()
     {
-        $items = [new Item("Conjured Mana Cake", 0, 20)];
+        $items = [new Item('Conjured Mana Cake', 0, 20)];
         $gildedRose = new GildedRose($items);
         $gildedRose->updateQuality();
 
@@ -158,11 +157,10 @@ class GildedRoseTest extends TestCase
 
     public function testConjuredItemsQualityIsNeverNegative()
     {
-        $items = [new Item("Conjured Mana Cake", 10, 0)];
+        $items = [new Item('Conjured Mana Cake', 10, 0)];
         $gildedRose = new GildedRose($items);
         $gildedRose->updateQuality();
 
         $this->assertGreaterThanOrEqual(0, $items[0]->quality);
     }
-
 }
